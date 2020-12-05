@@ -1,0 +1,30 @@
+[
+    {
+        "title": "名侦探柯南",
+        "currentEpisode": 0,
+        "sourceList": [
+            {
+                "siteTitle": "樱花动漫",
+                "baseUrl": "http://www.imomoe.ai/player/209-0-@.html"
+            },
+            {
+                "siteTitle": "冰贝贝",
+                "baseUrl": "https://www.bingbeibei.com/vodplay/2088-3-@.html"
+            }
+        ],
+        "episodeMatch": "replace@",
+        "sourceMatch": "false"
+    },
+    {
+        "title": "来自深渊",
+        "current": 0,
+        "sourceList": [
+            {
+                "siteTitle": "冰贝贝",
+                "baseUrl": "https://www.bingbeibei.com/vodplay/11339-1-@.html"
+            }
+        ],
+        "episodeMatch": "replace@",
+        "sourceMatch": "false"
+    }
+]

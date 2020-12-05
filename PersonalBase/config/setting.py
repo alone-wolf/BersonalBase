@@ -1,0 +1,24 @@
+class Setting:
+    ACCESS_TOKEN_KEY = "access_token"
+    ACCESS_TOKEN_VALUE = "NMSL"
+    ENABLE_ACCESS_TOKEN_CHECK = True
+    SQLALCHEMY_DATABASE_URI = "sqlite:///../data/data.db"
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+    DoorIsOpen = False
+
+    class Section:
+        class Function:
+            UnDefined = "undefined"
+            Notify = "notify"
+            Task = "task"
+            AnimeEpisode = "animeEpisode"
+            Share = "share"
+            List = [UnDefined, Notify, Task, AnimeEpisode, Share]
+
+        class Type:
+            RawText = "rawText"
+            Json = "json"
+            Ini = "ini"
+            UrlStr = "url"
+            List = [RawText, Json, Ini, UrlStr]
