@@ -7,6 +7,9 @@ class Setting:
 
     DoorIsOpen = False
 
+    class WebSocket:
+        ROOT_NAMESPACE = "/notify"
+
     class Section:
         class Function:
             UnDefined = "undefined"
