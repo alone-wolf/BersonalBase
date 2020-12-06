@@ -94,6 +94,26 @@ class Func:
         return b.to_object()
 
     @staticmethod
+    def func_section_get_function_with_json_con_thin(function):
+        tmp = db_select_function(function)
+        b = DataBody()
+        b.StatusCode = 200
+        b.Body = []
+        b.Message = "get all {} thin done".format(function)
+        for i in tmp:
+            try:
+                tmp = json.loads(i.con)
+            except Exception as err:
+                tmp = []
+                pass
+            b.Body.append({
+                "title": tmp.get("title"),
+                "notify": tmp.get("notify"),
+                "device": tmp.get("device")
+            })
+        return b.to_object(), 200
+
+    @staticmethod
     def func_section_add(function, type_, con):
         if function not in Setting.Section.Function.List:
             function = Setting.Section.Function.UnDefined

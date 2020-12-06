@@ -7,7 +7,7 @@ from PersonalBase.apps.Section.models import db_update_id, db_select_id, db_dele
 from PersonalBase.apps.Section.route_func import Func
 from PersonalBase.apps.Section.utils import DataBody
 from PersonalBase.config import Setting
-from PersonalBase.config.errorpage import StatusCode
+from PersonalBase.config.error import StatusCode
 
 Animate_routes = Blueprint("Animate_routes", __name__)
 

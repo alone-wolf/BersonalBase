@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, request, abort
 
 from PersonalBase.apps.Section.route_func import Func
 from PersonalBase.config import Setting
-from PersonalBase.config.errorpage import StatusCode
+from PersonalBase.config.error import StatusCode
 
 Section_routes = Blueprint("Section_route", __name__)
 

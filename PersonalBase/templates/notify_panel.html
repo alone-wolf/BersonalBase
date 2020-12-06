@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Notify Socket Test</title>
+</head>
+
+<body>
+
+</body>
+<script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+
+<script type="text/javascript" charset="utf-8">
+    var NOTIFY_NAMESPACE = "/notify"
+
+    var ENTRANCE_NOTIFICATION = "notify"
+    var ENTRANCE_NOTIFICATION_MONITOR_ONLY = "notify_monitor_only"
+
+
+    var socket = io(NOTIFY_NAMESPACE);
+
+    socket.on(ENTRANCE_NOTIFICATION, function (msg) {
+        console.log(ENTRANCE_NOTIFICATION);
+        console.log(msg);
+    });
+    socket.on(ENTRANCE_NOTIFICATION_MONITOR_ONLY, function (msg) {
+        console.log(ENTRANCE_NOTIFICATION_MONITOR_ONLY);
+        console.log(msg);
+    });
+
+    socket.on('connect', function () {
+        socket.emit('my_ping', { data: 'connected to the SocketServer...' });
+    });
+
+    socket.on('my_pong', function (msg) {
+        console.log(msg)
+    });
+
+    socket.on('close', function () {
+        console.log('disconnect')
+    });
+
+
+
+</script>
+
+</html>

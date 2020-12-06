@@ -2,6 +2,7 @@ from flask import render_template
 
 
 class StatusCode:
+    StatusCode_Ok = 200
     STATUS_CODE_BadRequest = 400
     STATUS_CODE_Unauthorized = 401
     STATUS_CODE_Forbidden = 403

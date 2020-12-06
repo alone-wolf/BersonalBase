@@ -1,4 +1,4 @@
-from PersonalBase.config.errorpage import init_error_page
+from PersonalBase.config.error import init_error_page
 from PersonalBase.config.setting import Setting
 
 
