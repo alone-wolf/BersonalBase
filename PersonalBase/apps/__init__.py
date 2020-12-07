@@ -1,5 +1,3 @@
-from flask_socketio import SocketIO, emit
-
 from PersonalBase.apps.Animate import init_app_animate
 from PersonalBase.apps.Door import init_app_door
 from PersonalBase.apps.Notify import init_app_notify

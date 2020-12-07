@@ -8,9 +8,9 @@ from PersonalBase.config.setting import Setting
 Door_routes = Blueprint('Door_routes', __name__)
 
 
-@Door_routes.route('/')
+@Door_routes.route('/door/index')
 def index():
-    return render_template("index.html")
+    return render_template("door.html")
 
 
 @Door_routes.route('/door')
@@ -21,12 +21,12 @@ def door():
         return "Closed"
 
 
-@Door_routes.route('/admin')
+@Door_routes.route('/door/admin')
 def admin():
-    return render_template("admin.html")
+    return render_template("door_admin.html")
 
 
-@Door_routes.route('/admin/logs')
+@Door_routes.route('/door/admin/logs')
 @check_access_token
 def admin_logs_():
     door_log_list = []
@@ -41,7 +41,7 @@ def admin_logs_():
     return jsonify(door_log_list)
 
 
-@Door_routes.route('/admin/door', methods=['POST'])
+@Door_routes.route('/door/admin/door', methods=['POST'])
 @check_access_token
 def admin_door():
     status = request.form.get("status") or abort(400)
@@ -56,14 +56,14 @@ def admin_door():
     return "door is " + status
 
 
-@Door_routes.route('/admin/db/init')
+@Door_routes.route('/door/admin/db/init')
 @check_access_token
 def admin_db_init_():
     db.create_all()
     return "create done"
 
 
-@Door_routes.route('/admin/db/drop')
+@Door_routes.route('/door/admin/db/drop')
 @check_access_token
 def admin_db_init():
     db.drop_all()

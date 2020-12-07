@@ -194,7 +194,7 @@
                 }]
                 axios_post_form_data({
                     method: 'post',
-                    url: '/admin/door',
+                    url: '/door/admin/door',
                     data: {
                         status: this.status.doorOpened ? "Close" : "Open",
                         user: this.settings.user_tag
@@ -225,7 +225,7 @@
             },
             get_logs: function() {
                 var that = this;
-                axios.get("/admin/logs", {
+                axios.get("/door/admin/logs", {
                         headers: {
                             "access_token": this.settings.access_token
                         }
@@ -245,7 +245,7 @@
                 } else {
                     this.request_lock = true;
                 }
-                axios.get('/admin/db/init', {
+                axios.get('/door/admin/db/init', {
                     headers: {
                         access_token: this.settings.access_token
                     }
@@ -268,7 +268,7 @@
                 } else {
                     this.request_lock = true;
                 }
-                axios.get('/admin/db/drop', {
+                axios.get('/door/admin/db/drop', {
                     headers: {
                         access_token: this.settings.access_token
                     }
