@@ -1,33 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "template.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <title>RR QRCode</title>
-    <link crossorigin="anonymous" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-        href="https://lib.baomitu.com/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+{% block title %}
+    RR QRCode
+{% endblock %}
 
-</head>
 
-<body>
+{% block addition_css %}
+{% endblock %}
 
-    <div class="panel panel-warning" style="margin: 16px;">
-        <div class="panel-heading">
-            <h3 class="panel-title" id="hhh">QR Code Stage</h3>
-        </div>
-        <div class="panel-body" id="ppp">
-
-        </div>
-    </div>
-
-</body>
-
-<script src="/static/qrcode.min.js"></script>
-<script crossorigin="anonymous" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ"
-    src="https://lib.baomitu.com/jquery/1.12.4/jquery.min.js"></script>
-<script crossorigin="anonymous" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-    src="https://lib.baomitu.com/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+{% block addition_js %}
+<script src="/static/recrepo/qrcode/qrcode.min.js"></script>
 <script>
     var protocol = window.location.protocol;
     var domain = window.location.host;
@@ -59,5 +41,26 @@
         return (false);
     }
 </script>
+{% endblock %}
 
-</html>
+{% block header %}
+    <div class="page-header">
+        <h1>RR QRCode</h1>
+    </div>
+{% endblock %}
+
+{% block body %}
+
+    <div class="panel panel-warning" style="margin: 16px;">
+        <div class="panel-heading">
+            <h3 class="panel-title" id="hhh">QR Code Stage</h3>
+        </div>
+        <div class="panel-body" id="ppp">
+
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block foot %}
+{% endblock %}
