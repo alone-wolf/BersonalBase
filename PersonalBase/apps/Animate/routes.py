@@ -1,7 +1,5 @@
 import json
-
 from flask import Blueprint, request, abort, render_template
-
 from PersonalBase.apps.Animate.utils import AnimateNode
 from PersonalBase.apps.Section.models import db_update_id, db_select_id, db_delete_id
 from PersonalBase.apps.Section.route_func import Func
