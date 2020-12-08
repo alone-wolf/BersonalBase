@@ -8,8 +8,6 @@ class Config:
     class WebSocket:
         NAMESPACE = Setting.WebSocket.ROOT_NAMESPACE
 
-        ROOM = "room_notify"
-
         ENTRANCE_NOTIFY = "en_notify"
         ENTRANCE_NOTIFY_MONITOR_ONLY = "en_notify_monitor_only"
 

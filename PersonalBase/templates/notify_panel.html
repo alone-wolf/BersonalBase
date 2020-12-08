@@ -69,9 +69,7 @@
                 that.notify.title = msg.title;
                 that.notify.device = msg.device;
                 that.time_stamp = that.get_time1();
-
-                console.log(ENTRANCE_NOTIFICATION);
-                console.log(msg);
+                console.log(ENTRANCE_NOTIFICATION,msg);
             });
             // socket.on(ENTRANCE_NOTIFICATION_MONITOR_ONLY, function (msg) {
             //     console.log(ENTRANCE_NOTIFICATION_MONITOR_ONLY);
@@ -81,10 +79,15 @@
             this.socket.on('connect', function () {
                 that.connected = true;
                 that.socket.emit('my_ping', { data: 'connected to the SocketServer...' });
+                that.socket.emit('device_report', { data: 'test device report' });
+            });
+
+            this.socket.on("device_info_broadcast",(msg)=>{
+                console.log("device_info_broadcast",msg);
             });
 
             this.socket.on('my_pong', function (msg) {
-                console.log(msg)
+                console.log("my_pong",msg);
             });
 
             this.socket.on('disconnect', function () {

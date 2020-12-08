@@ -1,6 +1,7 @@
 from flask import session
 from flask_socketio import SocketIO, emit
 
+from PersonalBase.apps.Device.websocket import init_websocket_device
 from PersonalBase.config import Setting
 
 
@@ -13,5 +14,7 @@ def init_websocket(server):
         session['receive_count'] = session.get('receive_count', 0) + 1
         emit('my_pong',
              {'data': message['data'], 'count': session['receive_count']})
+
+    init_websocket_device(socket_)
 
     return socket_
