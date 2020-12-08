@@ -8,7 +8,7 @@ class Setting:
     DoorIsOpen = False
 
     class WebSocket:
-        ROOT_NAMESPACE = "/notify"
+        ROOT_NAMESPACE = "/root_namespace"
 
     class Section:
         class Function:
