@@ -6,7 +6,7 @@ from flask_socketio import emit
 from PersonalBase.apps.Notify.config import Config
 from PersonalBase.apps.Section.models import db_insert, db_delete_ids, db_select_function
 from PersonalBase.apps.Section.route_func import Func
-from PersonalBase.apps.Section.utils import DataBody
+from PersonalBase.apps.Section.utils import DataBody, get_unix_time_stamp
 from PersonalBase.config.error import StatusCode
 
 Notify_routes = Blueprint("Notify_routes", __name__)
@@ -34,16 +34,24 @@ def notify_add():
         "title": title,
         "device": device
     }
+    body_with_time = {
+        "notify": notify,
+        "title": title,
+        "device": device,
+        "time": str(get_unix_time_stamp())
+    }
 
     send_type = request.args.get('sendType') or Config.WebSocket.SEND_TYPE_ALL
     if (send_type != Config.WebSocket.SEND_TYPE_ALL) and (send_type != Config.WebSocket.SEND_TYPE_MONITOR_ONLY):
         send_type = Config.WebSocket.SEND_TYPE_ALL
 
     if send_type == Config.WebSocket.SEND_TYPE_ALL:
-        emit(Config.WebSocket.ENTRANCE_NOTIFY, body, broadcast=True, namespace=Config.WebSocket.NAMESPACE)
-        emit(Config.WebSocket.ENTRANCE_NOTIFY_MONITOR_ONLY, body, broadcast=True, namespace=Config.WebSocket.NAMESPACE)
+        emit(Config.WebSocket.ENTRANCE_NOTIFY, body_with_time, broadcast=True, namespace=Config.WebSocket.NAMESPACE)
+        emit(Config.WebSocket.ENTRANCE_NOTIFY_MONITOR_ONLY, body_with_time, broadcast=True,
+             namespace=Config.WebSocket.NAMESPACE)
     elif send_type == Config.WebSocket.SEND_TYPE_MONITOR_ONLY:
-        emit(Config.WebSocket.ENTRANCE_NOTIFY_MONITOR_ONLY, body, broadcast=True, namespace=Config.WebSocket.NAMESPACE)
+        emit(Config.WebSocket.ENTRANCE_NOTIFY_MONITOR_ONLY, body_with_time, broadcast=True,
+             namespace=Config.WebSocket.NAMESPACE)
     b.StatusCode = 200
     b.Message = db_insert(json.dumps(body), Config.Function, Config.Type)
     return b.to_object(), 200
