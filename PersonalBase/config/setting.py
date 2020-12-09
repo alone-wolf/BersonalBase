@@ -8,7 +8,7 @@ class Setting:
     DoorIsOpen = False
 
     class WebSocket:
-        ROOT_NAMESPACE = "/root_namespace"
+        ROOT_NAMESPACE = "/root_ns"
 
     class Section:
         class Function:
