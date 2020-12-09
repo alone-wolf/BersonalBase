@@ -18,7 +18,8 @@ class Setting:
             AnimeEpisode = "animeEpisode"
             Share = "share"
             Device = "device"
-            List = [UnDefined, Notify, Task, AnimeEpisode, Share, Device]
+            Tab = "tab"
+            List = [UnDefined, Notify, Task, AnimeEpisode, Share, Device, Tab]
 
         class Type:
             RawText = "rawText"

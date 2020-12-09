@@ -80,7 +80,8 @@ class Func:
             try:
                 tmp = json.loads(i.con)
             except Exception as err:
-                tmp = []
+                print(err.__str__())
+                tmp = {}
                 pass
             b.Body.append({
                 "con": tmp,
@@ -104,13 +105,9 @@ class Func:
             try:
                 tmp = json.loads(i.con)
             except Exception as err:
-                tmp = []
+                tmp = {}
                 pass
-            b.Body.append({
-                "title": tmp.get("title"),
-                "notify": tmp.get("notify"),
-                "device": tmp.get("device")
-            })
+            b.Body.append(tmp)
         return b.to_object(), 200
 
     @staticmethod
