@@ -5,4 +5,6 @@ class Config:
     class WebSocket:
         NAMESPACE = "/tab_ns"
 
-        ENTRANCE_TAG = "en_tab"
+        ENTRANCE_TAB = "en_tab"
+
+        EVENT_BROADCAST_TAB = "event_b_tab"

@@ -1,7 +1,7 @@
 import json
 
 from PersonalBase.apps.Section.models import db_select_all, db_select_id, db_insert, db_update_id, db_delete_id, \
-    db_select_function
+    db_select_function, db_delete_id_check_function_type_, db_delete_ids
 from PersonalBase.apps.Section.utils import DataBody
 
 from flask import abort
@@ -137,14 +137,20 @@ class Func:
         return b.to_object()
 
     @staticmethod
-    def func_section_delete_id(id_):
-        try:
-            id_ = int(id_)
-        except Exception as err:
-            print(err)
-        db_delete_id(id_)
+    def func_section_delete_id(id_: int, function=None, type_=None):
+        if function and type_ and (function in Setting.Section.Function.List) and (type_ in Setting.Section.Type.List):
+            db_delete_id_check_function_type_(id_, function, type_)
+        else:
+            db_delete_id(id_)
         b = DataBody()
         b.Body = []
         b.StatusCode = 200
         b.Message = "section delete done"
         return b.to_object()
+
+    @staticmethod
+    def func_section_delete_all_function(function):
+        if function not in Setting.Section.Function.List:
+            return -1
+        db_delete_ids([i.id for i in db_select_function(function)])
+        return None

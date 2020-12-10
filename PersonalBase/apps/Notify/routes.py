@@ -71,7 +71,7 @@ def notify_get_all_thin():
 def notify_delete_all():
     b = DataBody()
     b.Body = []
-    db_delete_ids([i.id for i in db_select_function(Config.Function)])
+    Func.func_section_delete_all_function(Config.Function)
     b.StatusCode = 200
     b.Message = "delete all notify done"
     return b.to_object(), 200

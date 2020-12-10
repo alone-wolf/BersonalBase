@@ -73,6 +73,13 @@ def db_delete_id(id_: int):
         db.session.commit()
 
 
+def db_delete_id_check_function_type_(id_: int, function: str, type_: str):
+    tmp = db_select_id(id_)
+    if tmp and (tmp.function == function) and (tmp.type_ == type_):
+        db.session.delete(tmp)
+        db.session.commit()
+
+
 def db_delete_ids(ids: list):
     if type(ids) is not list:
         return
