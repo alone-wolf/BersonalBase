@@ -14,6 +14,11 @@ def create_server():
     init_ext(server)  # sql ctrl
     init_admin(server)
 
+    @server.after_request
+    def add_global_headers(response):
+        response.headers["Author-Tag"] = "alone-wolf"
+        return response
+
     @server.route("/apis")
     def apis():
         url_map = str(server.url_map)[5:-2]
