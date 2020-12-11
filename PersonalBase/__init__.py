@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request,abort
 from PersonalBase.apps import init_apps
 from PersonalBase.common.Admin import init_admin
 from PersonalBase.common.WebSocket import init_websocket
@@ -13,6 +13,20 @@ def create_server():
     server = init_config(server)
     init_ext(server)  # sql ctrl
     # init_admin(server)
+
+    @server.before_request
+    def check_access_token():
+        # print(request.path)
+        if request.headers.get("access_token") == "asdfghjkl":
+            return
+        elif str(request.path).endswith("/index"):
+            return
+        elif str(request.path).startswith("/socket.io"):
+            return
+        elif str(request.path).startswith("/animate"):
+            return
+        else:
+            abort(401)
 
     @server.after_request
     def add_global_headers(response):
