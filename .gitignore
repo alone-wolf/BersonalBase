@@ -1,4 +1,5 @@
 # Project exclude paths
-/venv/
-/data/data.db
-/PersonalBase/static/recrepo/
+venv/
+data/data.db
+PersonalBase/static/recrepo/
+PersonalBase/__pycache__/
