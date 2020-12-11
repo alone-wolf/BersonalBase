@@ -12,7 +12,7 @@ def create_server():
     init_apps(server)
     server = init_config(server)
     init_ext(server)  # sql ctrl
-    init_admin(server)
+    # init_admin(server)
 
     @server.after_request
     def add_global_headers(response):

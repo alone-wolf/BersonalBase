@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request, abort
 
 from PersonalBase.apps.Section.route_func import Func
+from PersonalBase.common.secure import check_access_token
 from PersonalBase.config import Setting
 from PersonalBase.config.error import StatusCode
 
@@ -13,11 +14,13 @@ def section_index():
 
 
 @Section_routes.route("/section/get/all")  # check token
+@check_access_token
 def section_get_all():
     return Func.fun_section_get_all()
 
 
 @Section_routes.route("/section/get/id/<int:id_>")  # check token
+@check_access_token
 def section_get_id(id_: int):
     return Func.func_section_get_id(id_)
 
@@ -33,6 +36,7 @@ def section_get_id(id_: int):
 
 
 @Section_routes.route("/section/add", methods=["POST"])  # check token
+@check_access_token
 def section_add():
     function = request.form.get("function") or Setting.Section.Function.UnDefined
     type_ = request.form.get("type") or Setting.Section.Type.RawText
@@ -66,6 +70,7 @@ def section_add():
 
 
 @Section_routes.route("/section/modify/id/<int:id_>", methods=["POST"])  # check token
+@check_access_token
 def section_modify(id_):
     function = request.form.get("function") or None
     type_ = request.form.get("type") or None
@@ -74,6 +79,7 @@ def section_modify(id_):
 
 
 @Section_routes.route("/section/delete/id/<int:id_>", methods=["DELETE"])  # check token
+@check_access_token
 def section_delete_id(id_):
     return Func.func_section_delete_id(id_)
 
