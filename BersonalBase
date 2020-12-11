@@ -10,7 +10,7 @@ do_install(){
     # shellcheck disable=SC2164
     cd $BB_PATH
     python3 -m venv venv
-    $PYTHON_PATH -m pip install -r requirement.txt
+    $PYTHON_PATH -m pip install -r requirements.txt
 }
 
 
