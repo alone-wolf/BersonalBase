@@ -1,20 +1,30 @@
 #!/bin/bash
 
-BERSONALBASE_PTAH=/root/BersonalBase/manage.py
+BERSONALBASE_PATH=/root/BersonalBase/
+BERSONALBASE_SCRIPT_NAME=manage.py
 
 do_start()
 {
-    nohup python3 $BERSONALBASE_PTAH >  /dev/null 2>&1 &
+    nohup python3 $BERSONALBASE_PATH$BERSONALBASE_SCRIPT_NAME >  /dev/null 2>&1 &
 }
 
 do_stop()
 {
-    pkill -f $BERSONALBASE_PTAH
+    pkill -f $BERSONALBASE_PATH$BERSONALBASE_SCRIPT_NAME
 }
 
 do_restart()
 {
     do_stop
+    sleep 1
+    do_start
+}
+
+do_update()
+{
+    do_stop
+    sleep 1
+    cd $BERSONALBASE_PATH && git pull
     sleep 1
     do_start
 }
@@ -35,8 +45,11 @@ case "$1" in
     restart)
         do_restart
         ;;
+    update)
+        do_update
+        ;;
     *)
-        echo "Usage: {start|stop|restart|reload}" >&2
+        echo "Usage: {start|stop|restart|reload|update}" >&2
         exit 3
         ;;
 esac
