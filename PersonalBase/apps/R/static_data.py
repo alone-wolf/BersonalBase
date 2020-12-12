@@ -8,5 +8,5 @@ class Identify:
 
 
 class Leader:
-    Name = ["温杰", "孟繁中", "姚义"]
+    Name = ["温杰", "孟繁中", "姚义", "李卫东"]
     Id = [""]

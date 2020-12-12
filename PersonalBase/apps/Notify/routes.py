@@ -4,7 +4,7 @@ from flask import Blueprint, request, render_template
 from flask_socketio import emit
 
 from PersonalBase.apps.Notify.config import Config
-from PersonalBase.apps.Section.models import db_insert, db_delete_ids, db_select_function
+from PersonalBase.apps.Section.models import db_insert
 from PersonalBase.apps.Section.route_func import Func
 from PersonalBase.apps.Section.utils import DataBody, get_unix_time_stamp
 from PersonalBase.config.error import StatusCode
