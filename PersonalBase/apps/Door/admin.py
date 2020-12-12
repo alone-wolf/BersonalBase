@@ -1,7 +1,7 @@
 from flask_admin.contrib.sqla import ModelView
 
 from PersonalBase.apps.Door.models import Door
-from PersonalBase.common.ext import db
+from PersonalBase.common.SQLAlchemy import db
 
 
 def admin_add_door(admin):

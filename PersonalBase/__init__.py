@@ -1,9 +1,9 @@
-from flask import Flask, jsonify, request,abort
+from flask import Flask, jsonify, request, abort
 from PersonalBase.apps import init_apps
 from PersonalBase.common.Admin import init_admin
 from PersonalBase.common.WebSocket import init_websocket
-from PersonalBase.config import init_config
-from PersonalBase.common.ext import init_ext
+from PersonalBase.common.SQLAlchemy import init_sqlalchemy
+from PersonalBase.config import init_config, Setting
 
 
 def create_server():
@@ -11,19 +11,19 @@ def create_server():
 
     init_apps(server)
     server = init_config(server)
-    init_ext(server)  # sql ctrl
-    # init_admin(server)
+    init_admin(server)
 
     @server.before_request
     def check_access_token():
-        # print(request.path)
-        if request.headers.get("access_token") == "asdfghjkl":
+        if request.headers.get("access_token") == Setting.ACCESS_TOKEN_VALUE:
             return
         elif str(request.path).endswith("/index"):
             return
         elif str(request.path).startswith("/socket.io"):
             return
         elif str(request.path).startswith("/animate"):
+            return
+        elif str(request.path).startswith("/admin"):
             return
         else:
             abort(401)

@@ -4,7 +4,7 @@ from PersonalBase.apps.R.models import select_all, db_get_inited_item_by_token, 
     ERR_TAG_FIND_NOT_INITED_ITEM_MATCH_TOKEN, ERR_TAG_UNDEFINED_ERR, db_create_item, ERR_TAG_FIND_ITEM_DISABLED, \
     db_init_item
 from PersonalBase.common.secure import check_access_token
-from PersonalBase.common.ext import db
+from PersonalBase.common.SQLAlchemy import db
 
 R_routes = Blueprint('R_routes', __name__)
 

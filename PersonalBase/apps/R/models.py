@@ -1,5 +1,5 @@
 from PersonalBase.apps.R.utils import get_unix_time_stamp, get_md5, check_access_token_local
-from PersonalBase.common.ext import db
+from PersonalBase.common.SQLAlchemy import db
 
 ERR_TAG_FIND_NONE_ITEM_MATCH_TOKEN = "FIND_NONE_ITEM_MATCH_TOKEN"
 ERR_TAG_FIND_NOT_INITED_ITEM_MATCH_TOKEN = "FIND_NOT_INITED_ITEM_MATCH_TOKEN"

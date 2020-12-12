@@ -1,5 +1,5 @@
 from PersonalBase.apps.Section.utils import get_unix_time_stamp, gen_token
-from PersonalBase.common.ext import db
+from PersonalBase.common.SQLAlchemy import db
 
 
 class Section(db.Model):

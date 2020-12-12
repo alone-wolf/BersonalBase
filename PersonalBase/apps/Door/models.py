@@ -1,6 +1,6 @@
 import time
 
-from PersonalBase.common.ext import db
+from PersonalBase.common.SQLAlchemy import db
 
 
 class Door(db.Model):

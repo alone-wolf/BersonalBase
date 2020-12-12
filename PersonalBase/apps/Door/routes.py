@@ -1,8 +1,8 @@
 from flask import Blueprint, render_template, request, abort, jsonify
 from PersonalBase.apps.Door.models import db_insert
 from PersonalBase.apps.Door.models import db_select_all
+from PersonalBase.common.SQLAlchemy import db
 from PersonalBase.common.secure import check_access_token
-from PersonalBase.common.ext import db
 from PersonalBase.config.setting import Setting
 
 Door_routes = Blueprint('Door_routes', __name__)
@@ -27,7 +27,6 @@ def admin():
 
 
 @Door_routes.route('/door/admin/logs')
-@check_access_token
 def admin_logs_():
     door_log_list = []
     for i in db_select_all():

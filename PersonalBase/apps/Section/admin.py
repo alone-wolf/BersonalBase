@@ -2,7 +2,7 @@ from flask_admin.contrib.sqla import ModelView
 from flask_admin.contrib.sqla.filters import FilterEqual
 
 from PersonalBase.apps.Section.models import Section
-from PersonalBase.common.ext import db
+from PersonalBase.common.SQLAlchemy import db
 
 
 class SectionView(ModelView):

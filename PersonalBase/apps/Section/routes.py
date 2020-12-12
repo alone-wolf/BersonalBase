@@ -1,7 +1,6 @@
 from flask import Blueprint, render_template, request, abort
 
 from PersonalBase.apps.Section.route_func import Func
-from PersonalBase.common.secure import check_access_token
 from PersonalBase.config import Setting
 from PersonalBase.config.error import StatusCode
 
