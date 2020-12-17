@@ -2,4 +2,8 @@
 venv/
 data/data.db
 PersonalBase/static/recrepo/
-PersonalBase/__pycache__/
+*/__pycache__/
+*/*/__pycache__/
+*/*/*/__pycache__/
+*/*/*/*/__pycache__/
+*/*/*/*/*/__pycache__/
