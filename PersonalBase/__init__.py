@@ -12,6 +12,7 @@ def create_server():
     init_apps(server)
     server = init_config(server)
     init_admin(server)
+    init_sqlalchemy(server)
 
     @server.before_request
     def check_access_token():
