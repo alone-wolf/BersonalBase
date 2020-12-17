@@ -69,5 +69,6 @@ def create_server():
     @server.route("/db/init")
     def db_init():
         db.create_all()
+        return "db init done"
 
     return init_websocket(server), server
