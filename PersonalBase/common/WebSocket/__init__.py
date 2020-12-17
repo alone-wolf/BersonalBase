@@ -7,7 +7,7 @@ from PersonalBase.config import Setting
 
 def init_websocket(server):
     async_mode = None
-    socket_ = SocketIO(server, async_mode=async_mode)
+    socket_ = SocketIO(server, async_mode=async_mode,cors_allowed_origins="*")
 
     @socket_.on('my_ping', namespace=Setting.WebSocket.ROOT_NAMESPACE)
     def test_message(message):
