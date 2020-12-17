@@ -28,6 +28,8 @@ def create_server():
             return
         elif str(request.path).startswith("/db/init"):
             return
+        elif str(request.path).startswith("/static"):
+            return
         else:
             abort(401)
 
