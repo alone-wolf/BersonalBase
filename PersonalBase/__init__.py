@@ -2,7 +2,7 @@ from flask import Flask, jsonify, request, abort
 from PersonalBase.apps import init_apps
 from PersonalBase.common.Admin import init_admin
 from PersonalBase.common.WebSocket import init_websocket
-from PersonalBase.common.SQLAlchemy import init_sqlalchemy
+from PersonalBase.common.SQLAlchemy import init_sqlalchemy, db
 from PersonalBase.config import init_config, Setting
 
 
@@ -25,12 +25,15 @@ def create_server():
             return
         elif str(request.path).startswith("/admin"):
             return
+        elif str(request.path).startswith("/db/init"):
+            return
         else:
             abort(401)
 
     @server.after_request
     def add_global_headers(response):
         response.headers["Author-Tag"] = "alone-wolf"
+        response.headers["Access-Control-Allow-Origin"] = "chrome-extension://bgoikmleejmihkgfachmalgimhlejlmd"
         return response
 
     @server.route("/apis")
@@ -61,5 +64,9 @@ def create_server():
             route.append(route_node)
         # route.sort(key=takeRoute)
         return jsonify(route)
+
+    @server.route("/db/init")
+    def db_init():
+        db.create_all()
 
     return init_websocket(server), server
