@@ -26,6 +26,12 @@ do_start()
     nohup $PYTHON_PATH $BB_PATH/$BB_MAIN_NAME >  /dev/null 2>&1 &
 }
 
+do_debug()
+{
+  cd $BB_PATH
+  $PYTHON_PATH $BB_PATH/$BB_MAIN_NAME
+}
+
 do_stop()
 {
     pkill -f $BB_PATH/$BB_MAIN_NAME
@@ -69,8 +75,11 @@ case "$1" in
     update)
         do_update
         ;;
+    debug)
+      do_debug
+      ;;
     *)
-        echo "Usage: {start|stop|restart|reload|update|install}" >&2
+        echo "Usage: {start|stop|restart|reload|update|install|debug}" >&2
         exit 3
         ;;
 esac
