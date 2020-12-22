@@ -56,6 +56,7 @@ Tab_routes = Blueprint("Tab_routes", __name__)
 @Tab_routes.route("/tab/liquid/update")
 def tab_liquid_update():
     emit("en_tab_work", {"data": "update"}, namespace=Setting.WebSocket.ROOT_NAMESPACE)
+    return "ok"
 
 
 @Tab_routes.route("/tab/index")
