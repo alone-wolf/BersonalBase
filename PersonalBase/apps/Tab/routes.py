@@ -10,6 +10,52 @@ from PersonalBase.config.error import StatusCode
 
 Tab_routes = Blueprint("Tab_routes", __name__)
 
+# tab_liquid_list = []
+#
+#
+# class TabNode:
+#     url = None
+#     title = None
+#     iconUrl = None
+#     status = None  # loading complete closed
+#     tabId = -1
+#
+#     def __init__(self, url, title, icon_url, status, tab_id):
+#         self.url = url
+#         self.title = title
+#         self.iconUrl = icon_url
+#         self.status = status
+#         self.tabId = tab_id
+#
+#     def to_object(self):
+#         return {
+#             "url": self.url,
+#             "title": self.title,
+#             "iconUrl": self.iconUrl,
+#             "status": self.status,
+#             "tabId": self.tabId
+#         }
+#
+#
+# class TabLiquidListDeviceNode:
+#     deviceToken = None
+#     tabList = []
+#
+#     def to_object(self):
+#         return {
+#             "deviceToken": self.deviceToken,
+#             "tabList": self.tabList
+#         }
+
+
+# def handle_liquid_tab(url: str, title: str, icon_url: str, status: str, tab_id: int):
+#     t = TabNode(url, title, icon_url, status, tab_id)
+
+@Tab_routes.route("/tab/liquid/update")
+def tab_liquid_update():
+    emit("en_tab_work", {"data": "update"})
+    return "ok"
+
 
 @Tab_routes.route("/tab/index")
 def tab_index():
@@ -54,7 +100,7 @@ def tab_delete_id(id_):
 def tab_delete_all():
     body = DataBody()
     body.Body = []
-    if Func.func_section_delete_all_function(Config.Function) is -1:
+    if Func.func_section_delete_all_function(Config.Function) == -1:
         body.StatusCode = StatusCode.STATUS_CODE_BadRequest
         body.Message = "error delete tab, due to bad function"
         return body.to_object()

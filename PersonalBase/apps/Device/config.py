@@ -1,10 +1,11 @@
-from PersonalBase.apps.Notify.config import Config
 from PersonalBase.config import Setting
 
 
 class Config:
     Function = "device"
     Type = "json"
+
+    # deviceToken
 
     class DevicePlatform:
         Apple = "apple"

@@ -2,6 +2,7 @@ from flask import session
 from flask_socketio import SocketIO, emit
 
 from PersonalBase.apps.Device.websocket import init_websocket_device
+from PersonalBase.apps.Tab.websocket import init_websocket_tab_liquid
 from PersonalBase.config import Setting
 
 
@@ -16,5 +17,6 @@ def init_websocket(server):
              {'data': message['data'], 'count': session['receive_count']})
 
     init_websocket_device(socket_)
+    init_websocket_tab_liquid(socket_)
 
     return socket_

@@ -1,6 +1,5 @@
 from flask import Blueprint, request, abort
 
-from PersonalBase.apps.Device import config
 from PersonalBase.apps.Device.config import Config
 
 Device_routes = Blueprint("Device_routes", __name__)

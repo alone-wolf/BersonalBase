@@ -14,5 +14,5 @@ def init_apps(server):
     init_app_animate(server)
     init_app_notify(server)
     # init_app_device(server)
-    # init_app_tab(server)
+    init_app_tab(server)
     return server
