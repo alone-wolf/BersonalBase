@@ -1,6 +1,4 @@
-import json
-
-from flask import Blueprint, request
+from flask import Blueprint, jsonify
 from flask_socketio import emit
 
 from PersonalBase.apps.Tab.config import Config
@@ -52,10 +50,12 @@ Tab_routes = Blueprint("Tab_routes", __name__)
 # def handle_liquid_tab(url: str, title: str, icon_url: str, status: str, tab_id: int):
 #     t = TabNode(url, title, icon_url, status, tab_id)
 
-@Tab_routes.route("/tab/liquid/update")
-def tab_liquid_update():
-    emit("en_tab_work", {"data": "update"}, namespace="root_ns")
-    return "ok"
+# @Tab_routes.route("/tab/liquid/update", methods=["GET"])
+# def tab_liquid_update():
+#     response = jsonify({'some': 'data'})
+#     response.headers.add('Access-Control-Allow-Origin', '*')
+#     emit("en_tab_work", {"data": "update"}, namespace="root_ns", broadcast=True)
+#     return response
 
 
 @Tab_routes.route("/tab/index")
@@ -63,23 +63,23 @@ def tab_index():
     return "404"
 
 
-@Tab_routes.route("/tab/add", methods=["GET", "POST"])
-def tab_add():
-    body = DataBody()
-    url = request.form.get("url") or request.args.get("url") or None
-    title = request.form.get("title") or request.args.get("title") or None
-    if not url or not title:
-        body.StatusCode = StatusCode.STATUS_CODE_BadRequest
-        body.Body = []
-        body.Message = "bad request, lack title or url"
-        return body.to_object(), 200
-    con_body = {
-        "title": title,
-        "url": url
-    }
-    emit(Config.WebSocket.ENTRANCE_TAB, body, namespace=Config.WebSocket.NAMESPACE)
-    Func.func_section_add(Config.Function, Config.Type, json.dumps(con_body))
-    return "new tab add done"
+# @Tab_routes.route("/tab/add", methods=["GET", "POST"])
+# def tab_add():
+#     body = DataBody()
+#     url = request.form.get("url") or request.args.get("url") or None
+#     title = request.form.get("title") or request.args.get("title") or None
+#     if not url or not title:
+#         body.StatusCode = StatusCode.STATUS_CODE_BadRequest
+#         body.Body = []
+#         body.Message = "bad request, lack title or url"
+#         return body.to_object(), 200
+#     con_body = {
+#         "title": title,
+#         "url": url
+#     }
+#     # emit(Config.WebSocket.ENTRANCE_TAB, body, namespace=Config.WebSocket.NAMESPACE)
+#     # Func.func_section_add(Config.Function, Config.Type, json.dumps(con_body))
+#     return "new tab add done"
 
 
 @Tab_routes.route("/tab/get/all", methods=['GET'])

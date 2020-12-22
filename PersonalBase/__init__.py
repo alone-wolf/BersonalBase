@@ -31,12 +31,13 @@ def create_server():
         elif str(request.path).startswith("/static"):
             return
         else:
-            abort(401)
+            return
+            # abort(401)
 
     @server.after_request
     def add_global_headers(response):
         response.headers["Author-Tag"] = "alone-wolf"
-        response.headers["Access-Control-Allow-Origin"] = "*"
+        response.headers["Access-Control-Allow-Origin"] = 'chrome-extension://bgoikmleejmihkgfachmalgimhlejlmd'
         return response
 
     @server.route("/apis")
