@@ -36,7 +36,7 @@ def create_server():
     @server.after_request
     def add_global_headers(response):
         response.headers["Author-Tag"] = "alone-wolf"
-        response.headers["Access-Control-Allow-Origin"] = "chrome-extension://bgoikmleejmihkgfachmalgimhlejlmd"
+        response.headers["Access-Control-Allow-Origin"] = "*"
         return response
 
     @server.route("/apis")
