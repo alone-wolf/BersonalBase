@@ -1,6 +1,7 @@
 from flask import session
 from flask_socketio import emit
 
+from PersonalBase.apps.Tab.config import Config
 from PersonalBase.config import Setting
 
 
@@ -8,7 +9,7 @@ from PersonalBase.config import Setting
 #                相应的服务端 on ev_xxx emit en_xxx
 def init_websocket_tab_liquid(socket_):
     # 第一期工程
-    @socket_.on('ev_tab_liquid_send', namespace=Setting.WebSocket.ROOT_NAMESPACE)
+    @socket_.on('ev_tab_liquid_send', namespace="root_ns")
     def tab_work(message):
         session['receive_count'] = session.get('receive_count', 0) + 1
         emit('en_tab_liquid',

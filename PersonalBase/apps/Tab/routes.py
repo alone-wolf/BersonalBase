@@ -3,7 +3,6 @@ import json
 from flask import Blueprint, request
 from flask_socketio import emit
 
-from PersonalBase import Setting
 from PersonalBase.apps.Tab.config import Config
 from PersonalBase.apps.Section.route_func import Func
 from PersonalBase.apps.Section.utils import DataBody
@@ -55,7 +54,7 @@ Tab_routes = Blueprint("Tab_routes", __name__)
 
 @Tab_routes.route("/tab/liquid/update")
 def tab_liquid_update():
-    emit("en_tab_work", {"data": "update"}, namespace=Setting.WebSocket.ROOT_NAMESPACE)
+    emit("en_tab_work", {"data": "update"}, namespace="root_ns")
     return "ok"
 
 

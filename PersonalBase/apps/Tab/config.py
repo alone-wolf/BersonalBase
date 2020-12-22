@@ -1,9 +1,13 @@
+# from PersonalBase import Setting
+
+
 class Config:
     Function = "tab"
     Type = "json"
 
     class WebSocket:
-        NAMESPACE = "/tab_ns"
+
+        # NAMESPACE = Setting.WebSocket.ROOT_NAMESPACE
 
         ENTRANCE_TAB = "en_tab"
 
