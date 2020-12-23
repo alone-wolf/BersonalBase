@@ -55,8 +55,7 @@ do_update()
     sleep 1
     echo updating...
     cd $BB_PATH && $PRE_PROXY_EXE git pull
-    sleep 1
-    do_start
+    echo please start maneully
 }
 
 case "$1" in
