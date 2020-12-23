@@ -1,5 +1,7 @@
 #!/bin/bash
 
+PRE_PROXY_EXE=proxychains4
+
 BB_PATH=/root/BersonalBase
 BB_MAIN_NAME=manage.py
 
@@ -15,7 +17,7 @@ do_install(){
     $PYTHON_PATH -m pip install -r requirements.txt
     echo cloning recrepo...
     cd $STATIC_FILE_PATH
-    git clone https://github.com/alone-wolf/recrepo.git --depth 1
+    $PRE_PROXY_EXE git clone https://github.com/alone-wolf/recrepo.git --depth 1
 }
 
 
@@ -52,7 +54,7 @@ do_update()
     do_stop
     sleep 1
     echo updating...
-    cd $BB_PATH && git pull
+    cd $BB_PATH && $PRE_PROXY_EXE git pull
     sleep 1
     do_start
 }
