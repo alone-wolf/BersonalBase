@@ -26,15 +26,19 @@ do_start()
 {
     # shellcheck disable=SC2164
     echo starting...
-    cd $BB_PATH
-    nohup $PYTHON_PATH $BB_PATH/$BB_MAIN_NAME >  /dev/null 2>&1 &
+    if [ -d "$BB_PATH/venv" ] ; then
+      cd $BB_PATH
+      nohup $PYTHON_PATH $BB_PATH/$BB_MAIN_NAME >  /dev/null 2>&1 &
+    fi
 }
 
 do_debug()
 {
   echo debuging...
-  cd $BB_PATH
-  $PYTHON_PATH $BB_PATH/$BB_MAIN_NAME
+  if [ -d "$BB_PATH/venv" ] ; then
+    cd $BB_PATH
+    $PYTHON_PATH $BB_PATH/$BB_MAIN_NAME
+  fi
 }
 
 do_stop()
