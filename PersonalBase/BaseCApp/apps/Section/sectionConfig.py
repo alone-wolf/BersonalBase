@@ -5,7 +5,7 @@ class SectionContainFunctions(AppBaseConfigBase):
     def __init__(self):
         self.Section = "section"
         self.Task = "task"
-        self.Animate = "animate"
+        self.Animate = "animeEpisode"
         self.Other = 'other'
         self.List = list(self.__dict__.values())
 

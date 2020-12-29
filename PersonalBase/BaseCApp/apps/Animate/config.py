@@ -1,3 +1,3 @@
 class Config:
-    Function = "animate"
+    Function = "animeEpisode"
     Type = "json"
