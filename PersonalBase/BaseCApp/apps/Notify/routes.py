@@ -74,21 +74,21 @@ def get_value_from_form(key, default_value):
 
 
 def get_send_type():
-    tmp = get_value_from_args('sendType', Config.WebSocket.EVENT.NotifyAll)
-    if tmp not in Config.WebSocket.EVENT.List:
-        tmp = Config.WebSocket.EVENT.NotifyAll
+    tmp = get_value_from_args('sendType', "all")
+    if tmp not in ["all", "monitor"]:
+        tmp = "all"
     return tmp
 
 
 def emit_notify_message(send_type, body_with_time):
-    if send_type == Config.WebSocket.EVENT.NotifyAll:
+    if send_type == "all":
         emit(Config.WebSocket.ENTRANCE.NotifyAll,
              body_with_time, broadcast=True,
              namespace=Config.WebSocket.NAMESPACE)
         emit(Config.WebSocket.ENTRANCE.NotifyMonitorOnly,
              body_with_time, broadcast=True,
              namespace=Config.WebSocket.NAMESPACE)
-    elif send_type == Config.WebSocket.EVENT.NotifyMonitorOnly:
+    elif send_type == "monitor":
         emit(Config.WebSocket.ENTRANCE.NotifyMonitorOnly,
              body_with_time, broadcast=True,
              namespace=Config.WebSocket.NAMESPACE)

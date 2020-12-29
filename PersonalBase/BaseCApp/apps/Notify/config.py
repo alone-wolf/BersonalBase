@@ -24,6 +24,8 @@ class Config:
             List = []
 
             def __init__(self, prefix="ev"):
+                # "en_notify_all ev_notify_all"
+                # "en_notify_monitor_only ev_notify_monitor_only"
                 self.NotifyAll = "{}_notify_all".format(prefix)
                 self.NotifyMonitorOnly = "{}_notify_monitor_only".format(prefix)
                 self.List = list(self.__dict__.keys())
