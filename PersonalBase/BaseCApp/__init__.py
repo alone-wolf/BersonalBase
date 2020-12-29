@@ -17,8 +17,14 @@ class Base0App:
     admin = None
     apps = []
     socket_io = None
+    host = "127.0.0.1"
+    port = 5000
+    debug = False
 
-    def __init__(self, template_folder='templates', static_folder="static"):
+    def __init__(self, template_folder='templates', static_folder="static", host="127.0.0.1", port=5000, debug=False):
+        self.host = host
+        self.port = port
+        self.debug = debug
         self.server_app = Flask(__name__, template_folder=template_folder, static_folder=static_folder)
         init_error_page(self.server_app)
         self.init_server()
@@ -53,10 +59,10 @@ class Base0App:
     def run(self):
         if self.socket_io is not None:
             print(" * running on SocketIO")
-            self.socket_io.run(self.server_app, debug=True)
+            self.socket_io.run(self.server_app, debug=self.debug, host=self.host, port=self.port)
         else:
             print(" * running on Flask ServerApp")
-            self.server_app.run(debug=True)
+            self.server_app.run(debug=self.debug, host=self.host, port=self.port)
 
 
 if __name__ == '__main__':
