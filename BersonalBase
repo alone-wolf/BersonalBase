@@ -2,95 +2,92 @@
 
 PRE_PROXY_EXE=proxychains4
 
-BB_PATH=/root/BersonalBase
-BB_MAIN_NAME=manage.py
+BB_PATH=$(pwd)
+BB_MAIN_NAME=main.py
 
 PYTHON_PATH=$BB_PATH/venv/bin/python3
 
 STATIC_FILE_PATH=$BB_PATH/PersonalBase/static
 
-do_install(){
-    echo installing...
-    # shellcheck disable=SC2164
-    cd $BB_PATH
-    python3 -m venv venv
-    $PYTHON_PATH -m pip install -r requirements.txt
-    echo cloning recrepo...
-    cd $STATIC_FILE_PATH
-    $PRE_PROXY_EXE git clone https://github.com/alone-wolf/recrepo.git --depth 1
-    cp $BB_PATH/BersonalBase $BB_PATH/BB
+do_install() {
+  echo installing...
+  # shellcheck disable=SC2164
+  cd "$BB_PATH"
+  python3 -m venv venv
+  $PYTHON_PATH -m pip install -r requirements.txt
+  echo cloning recrepo...
+  cd "$STATIC_FILE_PATH"
+  $PRE_PROXY_EXE git clone https://github.com/alone-wolf/recrepo.git --depth 1
+  # shellcheck disable=SC2086
+  cp "$BB_PATH"/BersonalBase $BB_PATH/BB
 }
 
-
-do_start()
-{
-    # shellcheck disable=SC2164
-    echo starting...
-    if [ -d "$BB_PATH/venv" ] ; then
-      cd $BB_PATH
-      nohup $PYTHON_PATH $BB_PATH/$BB_MAIN_NAME >  /dev/null 2>&1 &
-    fi
+do_start() {
+  # shellcheck disable=SC2164
+  echo starting...
+  if [ -d "$BB_PATH/venv" ]; then
+    cd "$BB_PATH"
+    # shellcheck disable=SC2086
+    nohup "$PYTHON_PATH" $BB_PATH/$BB_MAIN_NAME >/dev/null 2>&1 &
+  fi
 }
 
-do_debug()
-{
+do_debug() {
   echo debuging...
-  if [ -d "$BB_PATH/venv" ] ; then
-    cd $BB_PATH
+  if [ -d "$BB_PATH/venv" ]; then
+    cd "$BB_PATH"
+    # shellcheck disable=SC2086
     $PYTHON_PATH $BB_PATH/$BB_MAIN_NAME
   fi
 }
 
-do_stop()
-{
-    echo stopping...
-    pkill -f $BB_PATH/$BB_MAIN_NAME
+do_stop() {
+  echo stopping...
+  pkill -f "$BB_PATH"/$BB_MAIN_NAME
 }
 
-do_restart()
-{
-    do_stop
-    sleep 1
-    do_start
+do_restart() {
+  do_stop
+  sleep 1
+  do_start
 }
 
-do_update()
-{
-    do_stop
-    sleep 1
-    echo updating...
-    cd $BB_PATH && $PRE_PROXY_EXE git pull
-    echo please start maneully
+do_update() {
+  do_stop
+  sleep 1
+  echo updating...
+  cd "$BB_PATH" && $PRE_PROXY_EXE git pull
+  echo please start manually
 }
 
 case "$1" in
-    install)
-      do_install
-      ;;
-    start)
-        do_start
-        ;;
-    stop)
-        do_stop
-        ;;
-    status)
-        exit $?
-        ;;
-    reload)
-        echo "reload, but do nothing"
-        ;;
-    restart)
-        do_restart
-        ;;
-    update)
-        do_update
-        ;;
-    debug)
-      do_debug
-      ;;
-    *)
-        echo "Usage: {start|stop|restart|reload|update|install|debug}" >&2
-        exit 3
-        ;;
+install)
+  do_install
+  ;;
+start)
+  do_start
+  ;;
+stop)
+  do_stop
+  ;;
+status)
+  exit $?
+  ;;
+reload)
+  echo "reload, but do nothing"
+  ;;
+restart)
+  do_restart
+  ;;
+update)
+  do_update
+  ;;
+debug)
+  do_debug
+  ;;
+*)
+  echo "Usage: {start|stop|restart|reload|update|install|debug}" >&2
+  exit 3
+  ;;
 esac
 exit 0
