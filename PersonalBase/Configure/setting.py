@@ -1,3 +1,3 @@
 class Setting:
     class SocketIO:
-        ROOT_NAMESPACE = "root_ns"
+        ROOT_NAMESPACE = "/root_ns"
