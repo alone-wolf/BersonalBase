@@ -1,1 +1,0 @@
-python3 manage.py runserver -d -h 0.0.0.0
