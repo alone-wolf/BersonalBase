@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, request
 
 from PersonalBase.BaseCApp.apps.Section.func import func_section_delete_id, func_section_modify, func_section_add, \
     func_section_get_id, fun_section_get_all
-from PersonalBase.BaseCApp.apps.Section.sectionConfig import SectionConfig
+from PersonalBase.Configure.section_config import SectionConfig
 from PersonalBase.BaseCApp import StatusCode
 from PersonalBase.Utils.requestUtils import get_standard_request_value
 

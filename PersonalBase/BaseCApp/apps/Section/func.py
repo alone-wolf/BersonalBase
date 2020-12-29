@@ -1,6 +1,6 @@
 import json
 
-from PersonalBase.BaseCApp.apps.Section.sectionConfig import SectionConfig
+from PersonalBase.Configure.section_config import SectionConfig
 from PersonalBase.Utils.dataBeam import DataBody
 from PersonalBase.BaseCApp.apps.Section.model import Section
 from flask import abort

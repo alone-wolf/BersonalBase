@@ -1,3 +1,6 @@
+from PersonalBase.Configure.section_config import SectionConfig
+
+
 class Config:
-    Function = "animeEpisode"
-    Type = "json"
+    Function = SectionConfig.Function.Animate
+    Type = SectionConfig.Type.Json

@@ -1,9 +1,10 @@
 from PersonalBase.Configure import Setting
+from PersonalBase.Configure.section_config import SectionConfig
 
 
 class Config:
-    Function = "notify"
-    Type = "json"
+    Function = SectionConfig.Function.Notify
+    Type = SectionConfig.Type.Json
 
     class WebSocket:
         NAMESPACE = Setting.SocketIO.ROOT_NAMESPACE
