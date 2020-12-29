@@ -1,7 +1,6 @@
 # Project exclude paths
 venv/
-data.db
-data/data.db
+data/
 PersonalBase/static/recrepo/
 */__pycache__/
 */*/__pycache__/

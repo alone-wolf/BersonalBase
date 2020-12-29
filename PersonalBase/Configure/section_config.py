@@ -7,6 +7,7 @@ class SectionContainFunctions(AppBaseConfigBase):
         self.Task = "task"
         self.Notify = "notify"
         self.Animate = "animeEpisode"
+        self.File = "file"
         self.Other = 'other'
         self.List = list(self.__dict__.values())
 

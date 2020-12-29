@@ -18,3 +18,7 @@ def check_access_token(func: callable, Setting=None):
         return func(*args, **kwargs)
 
     return wrapper
+
+
+def check_token(token):
+    pass

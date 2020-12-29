@@ -65,8 +65,23 @@ def func_section_get_function(function):
     return b.to_object()
 
 
-def func_section_get_token(token):
+def func_section_select_token(token):
     return Section.db_select_token(token)
+
+
+def func_section_select_token_with_json_con(token):
+    tmp = func_section_select_token(token)
+    if tmp is None:
+        return None
+    return {
+        "con": json.loads(tmp.con),
+        "id": tmp.id,
+        "create_time": tmp.create_time,
+        "last_modify_time": tmp.last_modify_time,
+        "function": tmp.function,
+        "type": tmp.type_,
+        "token": tmp.token
+    }
 
 
 def func_section_get_function_with_json_con(function):
@@ -137,6 +152,18 @@ def func_section_delete_id(id_: int, function=None, type_=None):
         Section.db_delete_id_check_function_type_(id_, function, type_)
     else:
         Section.db_delete_id(id_)
+    b = DataBody()
+    b.Body = []
+    b.StatusCode = 200
+    b.Message = "section delete done"
+    return b.to_object()
+
+
+def func_section_delete_token(token: str, function=None, type_=None):
+    if function and type_ and (function in SectionConfig.Function.List) and (type_ in SectionConfig.Type.List):
+        Section.db_delete_token_check_function_type_(token, function, type_)
+    else:
+        Section.db_delete_token(token)
     b = DataBody()
     b.Body = []
     b.StatusCode = 200
