@@ -1,5 +1,4 @@
 from PersonalBase.BaseCApp.apps.Section.admin import SectionView
-# from PersonalBase.BaseCApp.apps.Section.func import Func
 from PersonalBase.BaseCApp.apps.Section.model import Section
 from PersonalBase.BaseCApp.apps.Section.routes import init_section_blueprint
 
@@ -10,6 +9,7 @@ class AppSection:
     blueprint = None
     db = None
     admin = None
+
     # model = None
 
     def __init__(self, server_app, db, admin_):

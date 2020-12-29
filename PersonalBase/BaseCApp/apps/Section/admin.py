@@ -1,6 +1,8 @@
 from flask_admin.contrib.sqla import ModelView
 from flask_admin.contrib.sqla.filters import FilterEqual
 
+from PersonalBase.BaseCApp.apps.Section.model import Section
+
 
 class SectionView(ModelView):
     # can_create = False
@@ -8,20 +10,17 @@ class SectionView(ModelView):
     can_export = True
     can_view_details = True
 
-    def __init__(self, model, session):
-        super().__init__(model, session)
-        self.model = model
-        self.column_filters = (
-            FilterEqual(
-                model.function,
-                "Function",
-                options=[
-                    ["notify", "Notify"], ["animeEpisode", "AnimeEpisode"], ["device", "Device"]
-                ]),
-            FilterEqual(
-                model.function,
-                "Type",
-                options=[
-                    ["json", "Json"], ["rawText", "RawText"]
-                ]),
-        )
+    column_filters = (
+        FilterEqual(
+            Section.function,
+            "Function",
+            options=[
+                ["notify", "Notify"], ["animeEpisode", "AnimeEpisode"], ["device", "Device"]
+            ]),
+        FilterEqual(
+            Section.function,
+            "Type",
+            options=[
+                ["json", "Json"], ["rawText", "RawText"]
+            ]),
+    )
