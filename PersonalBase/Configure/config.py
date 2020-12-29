@@ -3,7 +3,10 @@ import os
 
 class DBConfig:
     def __init__(self):
-        self.SQLALCHEMY_DATABASE_URI = "sqlite:///" + os.path.abspath(".") + "/data.db"
+        DATABASE_PATH = "{}/data".format(os.getcwd())
+        if not (os.path.exists(DATABASE_PATH) and os.path.isdir(DATABASE_PATH)):
+            os.mkdir(DATABASE_PATH)
+        self.SQLALCHEMY_DATABASE_URI = "sqlite:///{}/data.db".format(DATABASE_PATH)
         self.SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 
