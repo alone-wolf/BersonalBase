@@ -11,6 +11,8 @@ from PersonalBase.BaseCApp.ErrorPage import init_error_page
 from PersonalBase.BaseCApp.Hooks import init_hooks_main
 from PersonalBase.BaseCApp.SocketIO import init_socket_io_main
 
+skip_app_list = ("file",)
+
 
 class Base0App:
     alchemy = None
@@ -45,15 +47,21 @@ class Base0App:
         self.apps = [(i.name, i) for i in init_apps(self.server_app, self.alchemy, self.admin)]
 
     def init_app_admin(self):
-        for _, app in self.apps:
+        for name, app in self.apps:
+            if name in skip_app_list:
+                continue
             app.set_admin()
 
     def init_app_routes(self):
-        for _, app in self.apps:
+        for name, app in self.apps:
+            if name in skip_app_list:
+                continue
             app.set_blueprint()
 
     def init_app_socket_io(self):
-        for _, app in self.apps:
+        for name, app in self.apps:
+            if name in skip_app_list:
+                continue
             app.set_socket_io()
 
     def run(self):
