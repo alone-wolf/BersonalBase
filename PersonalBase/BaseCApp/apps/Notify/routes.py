@@ -21,7 +21,7 @@ def init_notify_blueprint():
     def notify_index():
         return render_template("notify_panel.html")
 
-    @Notify_routes.route("/", methods=['GET', 'POST'])
+    @Notify_routes.route("", methods=['GET', 'POST'])
     def notify_add():
         b = DataBody()
         b.Body = []
